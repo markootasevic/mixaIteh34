@@ -23,7 +23,7 @@
 <div id="junkInicijative" class="tabcontent">
   <h3>Neobradjene incijative</h3>
 
-  <form action='{{url('/postCheckbox')}}' method="post">
+  <form action='{{url('/inicijativa/dodeli')}}' method="post">
     {{csrf_field()}}
   <table style="width:100%">
     <tr>
@@ -35,6 +35,7 @@
       <th>PrivredniSubjekat/Ime podnosioca</th>
       <th>Tip inicijative</th>
       <th>Vreme podnosenja</th>
+      <th></th>
       <th></th>
     </tr>
 
@@ -61,6 +62,7 @@
         <td>{{$inicijativa->tip}}</td>
         <td>{{$inicijativa->created_at->diffForHumans()}}</td>
         <td><a href="{{route('inicijativaPopUp', ['inicijativaId' => $inicijativa->id])}}"><input type = "button" class="btn btn-primary" value = "otvori"> </a></td>
+        <td><input type="button" class="btn btn-primary" name="{{$inicijativa->id}}" value="Potvrdi incijativu" onclick="f1(this)"></td>
       </tr>
     
   @endforeach
@@ -86,9 +88,40 @@
 
   <h3>Prihvaćene inicijative</h3>
   <br>
-  <?php
+  <table style="width:100%">
+    <tr>
+      
+      <th>Naziv inicijative</th>
+      <th>Zakon</th> 
+      <th>PrivredniSubjekat/Ime podnosioca</th>
+      <th>Tip inicijative</th>
+      <th>Vreme podnosenja</th>
+      <th></th>
+    </tr>
 
-  ?> 
+  @foreach($inicijativePotvrdjene as $inicijativa)
+
+    <!-- window.document.location='{{route('inicijativaPopUp', ['inicijativaId' => $inicijativa->id])}}' -->
+      <tr>
+        <td>{{$inicijativa->nazivProcedure}}</td>
+        <td>{{$inicijativa->nazivZakona}}</td> 
+        <td>
+          @if($inicijativa->nazivPrivrednogSubjekta)
+            {{$inicijativa->nazivPrivrednogSubjekta}}
+          @else
+            {{$inicijativa->imePrezime}}
+          @endif
+        </td>
+        <td>{{$inicijativa->tip}}</td>
+        <td>{{$inicijativa->created_at->diffForHumans()}}</td>
+        <td><a href="{{route('inicijativaPopUp', ['inicijativaId' => $inicijativa->id])}}"><input type = "button" class="btn btn-primary" value = "otvori"> </a></td>
+
+      </tr>
+    
+  @endforeach
+
+  </table>
+
 </div>
 
 <div id="add/remove_nalog" class="tabcontent">
@@ -98,7 +131,7 @@
   ?>
 </div>
 
-<script>
+<script type="text/javascript">
 function openTab(evt, cityName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -112,12 +145,22 @@ function openTab(evt, cityName) {
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
 }
+
+
 </script>
 
 <script>
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); 
 });
+
+function f1(objButton){  
+    var id = objButton.name;
+    url ='{{url('/inicijativa/potvrdi')}}' + '/' + id;
+     $.ajax({url: url, success: function(result){
+       location.reload();
+    }});
+}
 </script>
 
 

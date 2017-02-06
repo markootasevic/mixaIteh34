@@ -39,6 +39,12 @@
 .custom-file-input:active::before {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
+
+#myChart{
+    /*display: block;*/
+    height: 80%;
+    width: 80%;
+}
 /*
 ul.tab {
     list-style-type: none;
@@ -81,5 +87,5 @@ ul.tab li a:focus, .active {
     border: 1px solid #ccc;
     border-top: none;
 }
-*/
+
 

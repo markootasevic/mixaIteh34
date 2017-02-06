@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <title>Laravel</title>
+    <title>Inicijative</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
 
     <!-- Styles -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
     <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
@@ -44,6 +45,28 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
                 </ul>
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url('/inicijativa/procedura') }}">Unesi proceduru</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url('/inicijativa/propis') }}">Unesi propis</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url('/inicijativa/sve') }}">Pogledaj unesene</a></li>
+                </ul>       
+
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url('/charts') }}">Pogledaj grafike</a></li>
+                </ul>  
+
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url('/map') }}">Pogledaj mapu</a></li>
+                </ul>  
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url('/api') }}">Pogledaj javni api</a></li>
+                </ul>  
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">

@@ -100,9 +100,9 @@ class InicijativeController extends Controller
         
       }
       $users = User::where('admin','=', 2)->get();
-      
+      $inicijativePotvrdjene = Inicijativa::orderBy('created_at', 'desc')->get();
           
-      return  view('adminPrikaz.administrativniPrikazInicijativa', compact('inicijative', 'users'));
+      return  view('adminPrikaz.administrativniPrikazInicijativa', compact('inicijative', 'users', 'inicijativePotvrdjene'));
       
     }
 
@@ -166,7 +166,10 @@ class InicijativeController extends Controller
 
     public function getJednuInicijativu(InicijativaJunk $inicijativaId) {
       //return  view('adminPrikaz.administrativniPrikazInicijativa', compact('inicijativaId'));
-      dd('POTREBNO SREDITI METODU TAKO DA SALJE OBJEKAT INICIJATIVA U POP UP PROZOR', $inicijativaId);
+      // dd('POTREBNO SREDITI METODU TAKO DA SALJE OBJEKAT INICIJATIVA U POP UP PROZOR', $inicijativaId);
+      $inicijativa = $inicijativaId;
+      return  view('adminPrikaz.jednaInicijativa', compact('inicijativa'));
+
     }
 
     public function getJavnoDostupne ($imeFajla) {
@@ -196,6 +199,15 @@ public function getFileInicijativa (Inicijativa $id) {
             );
       return response()->download($file, $imeFajla, $headers);
     }
+
+    public function getCount(){
+      $countJunk = InicijativaJunk::all()->count();
+      $count = Inicijativa::all()->count();
+      $array = array($countJunk, $count);
+      return $array;
+
+     }
+    
     
 }
 

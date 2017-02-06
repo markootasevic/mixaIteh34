@@ -20,6 +20,10 @@ Route::get('/', function () {
 //ADMIN
 Route::auth(); // url('/register') preko kod admin dodaje nove korsnije (ovo ide u action u formi za dodavanje)
 
+Route::get('api', function () {
+    return view('api');
+});
+
 Route::get('admin', 'AdminController@getAdminStrana');
 
 Route::delete('/obrisiKorisnika/{id}', 'AdminController@deleteKorisnik');
@@ -49,7 +53,7 @@ Route::post('/inicijativa','InicijativeController@postInicijativa');
 
 // RUTE ZA PRIHVATANJE ODBIJANJE I BRISANJE POJEDINACNE INICIJATIVE
 //	PROSLEDITI RUTE DUGMICIMA
-Route::post('inicijativa/potvrdi/{id}', 'InicijativeController@transferInicijativaPrihvacena');
+Route::get('inicijativa/potvrdi/{id}', 'InicijativeController@transferInicijativaPrihvacena');
 
 Route::post('inicijativa/odbij/{id}', 'InicijativeController@transferInicijativaOdbijena');
 
@@ -70,6 +74,16 @@ Route::get('/javnoDostupne', 'InicijativeController@getJavnoDostupne');
 //routa za download.ima primer hrefa za to u probaCheckbox view-u,ovaj id je id inicijative i to treba da se prosledi..moraju 2 rute,1 za neobradje i jedna za obradjene inicijative
 Route::get ('download/{id}', 'InicijativeController@getFileInicijativa');
 Route::get ('downloadJunk/{id}', 'InicijativeController@getFileInicijativaJunk');
+
+Route::get('charts', function() {
+    return view('charts');
+});
+
+Route::get('map', function() {
+    return view('map');
+});
+
+Route::get('getInicijativeCount' , 'InicijativeController@getCount');
 
 
 
